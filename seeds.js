@@ -42,11 +42,6 @@ var Comment         = require("./models/comment");
                          if (err) {
                              console.log(err);
                          } else {
-                            //si podemos create un comentario,
-                            //lo asociamos a un campground
-                            //para asociarlo, lo agregamos a la
-                            //coleccion de comentarios que tiene
-                            //cada campamento
                             campground.comments.push(comment);
                             campground.save();
                             console.log("add comment");
@@ -58,8 +53,6 @@ var Comment         = require("./models/comment");
          
      });
      
-     
-     //add a few coments
  }
  
  module.exports = seedDB;

@@ -43,9 +43,6 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 });
 
 //EDIT      comment routes 
-//campgrounds/:id/comments/:id/edit por como esta definida toda la ruta
-//tengo que ponerle comments_id, porque no puede haber dos parametros :id
-//tmb con req.params.id accedo al id del campground
 router.get("/:comments_id/edit", middleware.checkCommentOwnership, function(req, res){
     Comment.findById(req.params.comments_id, function(err, foundComment){
         if (err) {
@@ -80,39 +77,4 @@ router.delete("/:comments_id", middleware.checkCommentOwnership, function(req, r
     });
 });
 
-
-//middleware
-// function isLoggedIn(req, res, next){
-//     if (req.isAuthenticated()){
-//         return next();
-//     }
-//     res.redirect("/login");
-// }
-
-// function checkCommentOwnership(req, res, next){
-//     //si estoy logeado
-//         //si logeado = owner campground
-//             //edit o delete
-//         //else 
-//             //redireigir a donde estaba
-//     //else 
-//         //redirigir a donde estaba
-//     if (req.isAuthenticated()){
-//         //si estoy loggeado chequeo que coincida
-//         //con el autor del campamneto
-//         Comment.findById(req.params.comments_id, function(err, foundComment) {
-//             if (err) {
-//                 res.redirect("back");
-//             } else {
-//                 if (foundComment.author.id.equals(req.user._id)) {
-//                     next();
-//                 } else {
-//                     res.redirect("back");
-//                 }
-//             }
-//         });
-//     } else {
-//         res.redirect("back");
-//     }
-// }
 module.exports = router;
