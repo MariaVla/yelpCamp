@@ -1,0 +1,16 @@
+.img-thumbnail {
+    width: 100%;
+    padding: 0;
+}
+
+.card-body {
+     padding: 9px;   
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+#delete-form {
+    display: inline;
+}
