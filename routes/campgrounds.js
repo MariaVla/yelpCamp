@@ -4,19 +4,22 @@ var Campground = require("../models/campground");
 var middleware = require("../middleware");
 
 
-
-
 // INDEX - Show all campgrounds
 router.get("/", function(req, res){
     //Get campgrounds from the database 
-    Campground.find({}, function(err, allCampgrounds){
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("index.ejs", {campgrounds: allCampgrounds});
+    // TODO majo: Uncomment
+    // Campground.find({}, function(err, allCampgrounds){
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         res.render("index.ejs", {campgrounds: allCampgrounds});
 
-        }
-    });
+    //     }
+    // });
+    
+    // TODO majo: Remove
+    res.render("index.ejs", {campgrounds: [{id: 2, title: "Everest",  imagen: "http://www.everestian.com/img/afs2.jpg",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo"}]});
 });
 
 //CREATE - Crear nuevos campamentos
@@ -67,8 +70,8 @@ router.get("/:id/edit", middleware.checkCampOwnership, function(req, res){
             res.render("campgrounds/edit.ejs", {campground: foundCamp});
         }
     });
-
 });
+
 //UPDATE    campground route "/campgrounds/:id"
 router.put("/:id", middleware.checkCampOwnership, function(req, res){
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCamp){

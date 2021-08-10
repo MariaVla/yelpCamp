@@ -15,8 +15,9 @@ var commentRoutes       = require("./routes/comments"),
     campgroundRoutes    = require("./routes/campgrounds"),
     indexRoutes         = require("./routes/index");
 
-var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v11";
-mongoose.connect(url);
+// TODO majo: Uncomment
+// var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v11";
+// mongoose.connect(url);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
@@ -53,6 +54,6 @@ app.use("/campgrounds" ,campgroundRoutes);
 app.use(indexRoutes);
 
 
-app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("Server Running!");
+app.listen(3002, process.env.IP, function(){
+    console.log(`Server running at: ${3002}`);
 });
